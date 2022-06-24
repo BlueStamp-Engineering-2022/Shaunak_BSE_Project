@@ -23,8 +23,10 @@ My first milestone was setting up and hooking up the Raspberry Pi and all the ne
 
 [![First Milestone](https://res.cloudinary.com/marcomontalbano/image/upload/v1612574117/video_to_markdown/images/youtube--CaCazFBhYKs-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=CaCazFBhYKs "First Milestone"){:target="_blank" rel="noopener"}
 
-# Starter Project 
+# Starter Project: Customizable Arduino project 
   
-Starter project stuff here lmaolmao
+  For my starter project, I opted to work on the cuztomizable arduino. I chose this particular project as a precursor to my main project, which also uses an arduino board and curcuit building. For input and output, I picked a potentiometer and a servo motor, the other primary parts of my curcuit an arduino uno microcontroller, a protoboard, as well as jumper and solid core wires. A potentiometer is a variable resister which can take a constant input voltage and output a restance that varies as the user turns a knob. This varying output volatge is read by a built in function analogRead() which assigns an integer value from 0 and 1023 to the changing voltage. Another function in the code takes this 10 bit integer and scales it between 0 and 180 degrees, which are the rotation limits of the servo motor. Servos are special types of motors that take a pulse through a PWM connection on the arduino board and make precise movements to specific locations. As the potentiometer knob is rotated, the servo motor turns. 
+
+  I didn't face all to many challenges when working on the core project, only a little difficulty when soldering connections onto the protoboard. Motivated by my success, I decided to modify my project by adding a 7 segment display to further scale the potentiometer readings between 1 and 5 to display a crude percentage of how much the servo had rotated. A 7 segemnt display is an eletrical component with 7 LEDs arranged in a rectangular pattern. As these LEDs are lit up in sequence, different numerals and characters are displayed. Although I was able to complete a working ciruit and program a cycle of numbers to be displayed, I was unable to interface the display with the project itself as the programming is something I have to work out over the next few weeks. 
 
 [![Starter Project](https://res.cloudinary.com/marcomontalbano/image/upload/v1612574117/video_to_markdown/images/youtube--CaCazFBhYKs-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/Zb-74cf-3_k "Starter Project"){:target="_blank" rel="noopener"}
