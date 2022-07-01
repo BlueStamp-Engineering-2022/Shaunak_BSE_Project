@@ -1,0 +1,42 @@
+#include <Servo.h>
+Servo x;
+String a="Close";
+int prev=1;
+void setup() {
+  Serial.begin(9600);
+  pinMode (2, INPUT_PULLUP);
+  x.attach(9);
+
+}
+
+//int buttonStatus = 0;
+
+void loop() {
+  int pinValue = digitalRead(2);
+  if (pinValue == 0 && prev==1){
+    toggle();
+    prev=0;
+  }
+  else if (pinValue == 1){
+    prev=1;
+  }
+}
+void toggle(){
+  if (a=="Close"){
+    openLock();
+    a="Open";
+    Serial.println(a);
+  }
+  else{
+    closeLock();
+    a="Close";
+    Serial.println(a);
+  }
+}
+void openLock(){
+  x.write(0);
+  
+}
+void closeLock(){
+  x.write(87);
+}
