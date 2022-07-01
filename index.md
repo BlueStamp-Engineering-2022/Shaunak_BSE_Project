@@ -22,7 +22,9 @@ My first milestone is a hardware showcase demonstrating the fuctionality of the 
 
 ![toggleDeomstratorCode](https://i.postimg.cc/cJb3sQ2j/Screen-Shot-2022-07-01-at-10-18-09-AM.png)
 
-[![First Milestone](https://res.cloudinary.com/marcomontalbano/image/upload/v1612574117/video_to_markdown/images/youtube--CaCazFBhYKs-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=CaCazFBhYKs "First Milestone"){:target="_blank" rel="noopener"}
+In addition to the lock hardware, I assembled the rasbery pi camera 
+
+[![First Milestone](https://i3.ytimg.com/vi/aTZep-6-vyo/maxresdefault.jpg)](https://www.youtube.com/watch?v=aTZep-6-vyo){:target="_blank" rel="noopener"}
 
 # Starter Project: Customizable Arduino project 
   
