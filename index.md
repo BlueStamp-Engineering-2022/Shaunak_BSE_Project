@@ -20,7 +20,7 @@ My final milestone is the increased reliability and accuracy of my robot. I amel
 
 My first milestone is a hardware showcase demonstrating the fuctionality of the lock mechanism and the rasberry pie camera module. The lock is a simple 3D printed assembly put together with screws. A sliding bolt is controlled by a servo motor, forming a rack and pinion mechanism which converts the rotational motion of the servo motor to linear motion, allowing the bolt to slide in and out. To demonstrate, I programmed the arduino to open or close the lock when a push button is pressed, creating a toggle switch. The code for this was esepcially interesting to develop despite it not having a direct connection to my main project. 
 
-![toggleDeomstratorCode](https://photos.app.goo.gl/V7K2dJmz79PFeHkZ8)
+![toggleDeomstratorCode](https://i.postimg.cc/jjmBbfjd/Screen-Shot-2022-07-01-at-10-18-09-AM.png)
 
 [![First Milestone](https://res.cloudinary.com/marcomontalbano/image/upload/v1612574117/video_to_markdown/images/youtube--CaCazFBhYKs-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=CaCazFBhYKs "First Milestone"){:target="_blank" rel="noopener"}
 
