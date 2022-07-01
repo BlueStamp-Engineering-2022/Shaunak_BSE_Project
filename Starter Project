@@ -1,0 +1,22 @@
+#include <Servo.h>
+Servo x; 
+int servoPos = 0;
+int potValue = 0;
+
+//define the servo 
+
+void setup() {
+  Serial.begin(9600);
+  x.attach(10); 
+  x.write(servoPos);
+}
+
+void loop() {
+  potValue = analogRead(A2);
+  servoPos = map(potValue, 0, 1023, 0, 180);
+  delay(5);
+  Serial.println(servoPos); 
+  x.write(servoPos);
+  
+
+}
