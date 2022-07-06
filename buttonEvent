@@ -1,0 +1,21 @@
+  GNU nano 5.4                                                            buttonEvent.py                                                                      
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+previousEdge = 1
+
+def buttonPressed(Pin4):
+        global previousEdge
+        input = GPIO.input(Pin4)
+        if (previousEdge != 1 and input):
+                print("Button pressed")
+        previousEdge = input
+        #print(input) 
+
+try:
+        while(True):
+                buttonPressed(4)
+except KeyboardInterrupt:
+        GPIO.cleanup()
+
+
