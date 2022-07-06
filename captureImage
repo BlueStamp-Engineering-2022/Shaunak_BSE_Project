@@ -1,0 +1,32 @@
+import time
+from picamera import PiCamera
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+previousEdge = 1
+
+def captureImage():
+        camera = PiCamera()
+        camera.resolution = (640, 480)
+        camera.start_preview()
+        time.sleep(2)
+        camera.capture('guestImage.jpg')
+        print("Guest image captured")
+        camera.stop_preview()
+        camera.close()
+        
+def buttonPressed(Pin4):
+        global previousEdge
+        input = GPIO.input(Pin4)
+        if (previousEdge != 1 and input):
+                print("Button pressed")
+                captureImage()
+                #conditional statemnet looking for a rising edge in the button voltage confirming a button press
+        previousEdge = input 
+
+try:
+        while(True):
+                buttonPressed(4)
+except KeyboardInterrupt:
+        GPIO.cleanup()
+
