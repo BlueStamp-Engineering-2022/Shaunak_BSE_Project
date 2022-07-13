@@ -22,7 +22,7 @@ With the preliminary steps and setup completed, I could now work on setting up t
 Throughout this process, I struggled in a few places. When storing the image IDs in DynamoDB my image file types were not supported despite appearing as JPEG files. As it turned out, when converting my images, the file type hadn’t actually changed. A handfull of other less significant errors popped up throughout the configuration and testing process. At this point, I have most of my individual components ready. My next steps just include meshing all my code together to function at the press of one button. 
 
 
-[![Third Milestone](https://res.cloudinary.com/marcomontalbano/image/upload/v1612574014/video_to_markdown/images/youtube--y3VAmNlER5Y-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=y3VAmNlER5Y&feature=emb_logo "Second Milestone"){:target="_blank" rel="noopener"}
+[![Third Milestone](https://i3.ytimg.com/vi/bJItlKtGedE/maxresdefault.jpg)](https://www.youtube.com/watch?v=bJItlKtGedE "Second Milestone"){:target="_blank" rel="noopener"}
 
 # Documenting progress in between milestones
 include button event, camera, and email
