@@ -1,0 +1,102 @@
+import serial 
+import botocore
+import json
+import urllib
+from decimal import Decimal
+import time
+import boto3 
+dynamodb = boto3.client('dynamodb', region_name='us-west-1')
+s3 = boto3.resource('s3')
+from picamera import PiCamera
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+previousEdge = 1
+bucket = "shaunak2"
+collection = "family_collection"
+key = "guestImage.jpg"
+image_id = key
+
+def guestSearch(bucket, key, collection_id, image_id=None, attributes=(), region="us-west-1"):
+        rekognition = boto3.client("rekognition", region)
+        try:
+                response = rekognition.search_faces_by_image(
+                Image = {"S3Object": {"Bucket": bucket, "Name": key,}}, CollectionId=collection_id)
+                if len(response['FaceMatches']) == 0:
+                        print("A new guest is at the door")
+                        sendEmail()
+                else:
+                        for match in response['FaceMatches']:
+                                face = dynamodb.get_item(TableName = 'family_collection',
+                                Key = {'RekognitionId':{'S':match['Face']['FaceId']}})
+                                if 'Item' in face:
+                                        guest = face['Item']['FullName']['S']
+                                        print("Person at the door:", guest)
+                                        if (guest == 'John Smith' or guest == 'Jone Smith' or guest == 'Napoleon Bonaparte'):
+                                                ser=serial.Serial('/dev/ttyACM0',9600,timeout=1)
+                                                ser.reset_input_buffer()
+                                                time.sleep(2)
+                                                ser.write(b"open\n")
+                                        else:
+                                                sendEmailNewGuest()
+                                        break
+        except botocore.exceptions.ClientError as e:
+                print("No face found")
+
+def captureImage():
+        camera = PiCamera()
+        camera.resolution = (640, 480)
+        camera.start_preview()
+        time.sleep(1)
+        camera.capture('guestImage.jpg')
+        print("Guest image captured")
+        camera.stop_preview()
+        camera.close()
+        
+def buttonPressed(Pin4):
+        global previousEdge
+        input = GPIO.input(Pin4)
+        if (previousEdge != 1 and input):
+        #conditional statement looking for a rising edge in the button voltage confirming a button press
+                print("Button pressed")
+                captureImage()
+                uploadToS3()
+                guestSearch(bucket, key, collection, image_id)
+        previousEdge = input 
+
+def uploadToS3():
+        fullName = "Guest"
+        file = open('guestImage.jpg', 'rb')
+        object = s3.Object('shaunak2','guestImage.jpg')
+        ret = object.put(Body=file, Metadata={'FullName':fullName})
+        print("Image uploaded")
+        return
+        #uploads the captured image to the S3 bucket 
+
+def sendEmailNewGuest ():
+        #https://docs.python.org/3/library/email.html 
+        import smtplib
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+        from email.mime.base import MIMEBase
+        from email import encoders
+        fromAddress = "drearydairy@gmail.com"
+        toAddress = "drearydairy@gmail.com"
+        msg = MIMEMultipart()
+        msg['From'] = fromAddress
+        msg['To'] = toAddress
+        msg['Subject'] = "New Guest"
+        body = "A new guest is waiting at the door. A photo of the guest is attached below\n"
+        msg.attach(MIMEText(body, 'plain'))
+        filename = "guestImage.jpg"
+        attachment = open("/home/shaunak/Desktop/guestImage.jpg", "rb")
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload((attachment).read())
+        encoders.encode_base64(part)
+        part.add_header('Contet-Disposition',"attachment; filename= %s" % filename)
+        msg.attach(part)
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.starttls()
+        server.login(fromAddress,"uxif hbis mbyj cpmw")
+        text = msg.as_string()
+
