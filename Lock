@@ -1,0 +1,26 @@
+#include <Servo.h>
+Servo x;
+String serialInput;
+void setup() {
+  Serial.begin(9600);
+  x.attach(9);
+}
+
+void loop() {
+   x.write(87);
+   if(Serial.available()){
+    serialInput = Serial.readStringUntil('\n');
+   }
+   if(serialInput == "open"){
+    lockCycle();
+    serialInput = "";
+   }
+}
+
+void lockCycle(){
+  x.write(0);
+  Serial.println("Opened");
+  delay(5000);
+  x.write(87);
+  Serial.println("Closed");
+}
