@@ -1,4 +1,9 @@
 import serial 
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 import botocore
 import json
 import urllib
@@ -10,7 +15,7 @@ s3 = boto3.resource('s3')
 from picamera import PiCamera
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) #sets pin mode 
 previousEdge = 1
 bucket = "shaunak2"
 collection = "family_collection"
@@ -24,7 +29,7 @@ def guestSearch(bucket, key, collection_id, image_id=None, attributes=(), region
                 Image = {"S3Object": {"Bucket": bucket, "Name": key,}}, CollectionId=collection_id)
                 if len(response['FaceMatches']) == 0:
                         print("A new guest is at the door")
-                        sendEmail()
+                        sendEmailNewGuest()
                 else:
                         for match in response['FaceMatches']:
                                 face = dynamodb.get_item(TableName = 'family_collection',
@@ -33,27 +38,29 @@ def guestSearch(bucket, key, collection_id, image_id=None, attributes=(), region
                                         guest = face['Item']['FullName']['S']
                                         print("Person at the door:", guest)
                                         if (guest == 'John Smith' or guest == 'Jone Smith' or guest == 'Napoleon Bonaparte'):
+                                                #opens and establishes the serial connection to the ardunio 
                                                 ser=serial.Serial('/dev/ttyACM0',9600,timeout=1)
                                                 ser.reset_input_buffer()
                                                 time.sleep(2)
                                                 ser.write(b"open\n")
-                                        else:
-                                                sendEmailNewGuest()
+                                                sendEmailVerifiedGuest(guest)
                                         break
         except botocore.exceptions.ClientError as e:
                 print("No face found")
 
 def captureImage():
+        #captures the image of the guest using the rpi camera; defines the camera, sets the resolution and captures the image
         camera = PiCamera()
         camera.resolution = (640, 480)
         camera.start_preview()
-        time.sleep(1)
+        time.sleep(0.5)
         camera.capture('guestImage.jpg')
         print("Guest image captured")
         camera.stop_preview()
         camera.close()
         
 def buttonPressed(Pin4):
+        #function looking for the button press, calls the rest of the functions once the button is pressed 
         global previousEdge
         input = GPIO.input(Pin4)
         if (previousEdge != 1 and input):
@@ -65,21 +72,18 @@ def buttonPressed(Pin4):
         previousEdge = input 
 
 def uploadToS3():
+        #uploads the captured image of the guest to the Amazon S3 bucket 
         fullName = "Guest"
         file = open('guestImage.jpg', 'rb')
         object = s3.Object('shaunak2','guestImage.jpg')
         ret = object.put(Body=file, Metadata={'FullName':fullName})
         print("Image uploaded")
         return
-        #uploads the captured image to the S3 bucket 
 
 def sendEmailNewGuest ():
-        #https://docs.python.org/3/library/email.html 
-        import smtplib
-        from email.mime.multipart import MIMEMultipart
-        from email.mime.text import MIMEText
-        from email.mime.base import MIMEBase
-        from email import encoders
+        #sends an email to the owner notifing them that a new guest is at the door. 
+        #The email includes an attachment of the image of the new guest
+        #https://docs.python.org/3/library/email.html
         fromAddress = "drearydairy@gmail.com"
         toAddress = "drearydairy@gmail.com"
         msg = MIMEMultipart()
@@ -99,4 +103,31 @@ def sendEmailNewGuest ():
         server.starttls()
         server.login(fromAddress,"uxif hbis mbyj cpmw")
         text = msg.as_string()
+        server.sendmail(fromAddress, toAddress, text)
+        server.quit()
+        print("Email sent to " + toAddress)
+
+def sendEmailVerifiedGuest (guest):
+        #sends an email to the owner that a guest has entered the room. Contains the name of the guest 
+        fromAddress = 'drearydairy@gmail.com'
+        toAddress = 'drearydairy@gmail.com'
+        msg = MIMEMultipart()'
+        msg ['From'] = fromAddress
+        msg ['To'] = toAddress
+        msg['Subject'] = "Door unlocked"
+        body = str(guest) + " has entered the room"
+        msg.attach(MIMEText(body, 'plain'))
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.starttls()
+        server.login(fromAddress,"uxif hbis mbyj cpmw")
+        text = msg.as_string()
+        server.sendmail(fromAddress, toAddress, text)
+        server.quit()
+        print("Notification sent to " + toAddress)
+
+try:
+        while(True):
+                buttonPressed(4)
+except KeyboardInterrupt:
+        GPIO.cleanup()
 
