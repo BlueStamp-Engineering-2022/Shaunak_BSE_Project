@@ -43,8 +43,8 @@ In between milestones, I worked on some functions that would be important to the
 
 Following the button event, I had to program the camera. The program for this was relativley simple and I was able to utilize Raspberry Pi documentation and other resources to complete the funcionality of the camera module. 
 
-![cameraModule](
-include button event, camera, and email
+![cameraModule](https://i.postimg.cc/YqJVdxcx/Screen-Shot-2022-07-22-at-9-27-48-AM.png)
+
 
 # First Milestone
 
