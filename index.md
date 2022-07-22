@@ -24,6 +24,10 @@ Establishing the serial connection:
 
 [![Final Milestone](https://i3.ytimg.com/vi/C91z8Jmsm0g/maxresdefault.jpg)](https://www.youtube.com/watch?v=F7M7imOVGug&feature=emb_logo "Final Milestone"){:target="_blank" rel="noopener"}
 
+Program Workflow:
+![workFlow1](https://i.postimg.cc/XJW0kGZZ/Screen-Shot-2022-07-22-at-9-51-03-AM.png)
+![workFlow2](https://i.postimg.cc/3JNQ1HwZ/Screen-Shot-2022-07-22-at-9-51-32-AM.png)
+
 # Second Milestone 
 
 For my second milestone, I’ll talk about the workflow and steps that I progressed through to configure and set up all the aspects of AWS that have to work together in my project. To communicate and manage AWS services, I installed the AWS command line interface onto my raspberry pi. Alongside the CLI, I installed the AWS Python SDK, which allows me to write Python scripts and connect to the secure AWS Internet Of Things.
