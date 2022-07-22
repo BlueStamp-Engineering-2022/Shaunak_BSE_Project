@@ -36,6 +36,14 @@ Throughout this process, I struggled in a few places. When storing the image IDs
 [![Third Milestone](https://i3.ytimg.com/vi/bJItlKtGedE/maxresdefault.jpg)](https://www.youtube.com/watch?v=bJItlKtGedE "Second Milestone"){:target="_blank" rel="noopener"}
 
 # Documenting progress in between milestones
+
+In between milestones, I worked on some functions that would be important to the rest of my program. Firstly, I programmed the button event handler. Essentially, the button press varies the circuit voltage which, as read by the input pins on the Raspberry Pi, reads a value of either 0 or 1. By creating a conditional statement that looks for a rising edge in the voltage graph, the program can confirm a button press and call the next function. 
+
+![buttonEventHandler](https://i.postimg.cc/kgGrH5Dn/Screen-Shot-2022-07-22-at-8-42-31-AM.png)
+
+Following the button event, I had to program the camera. The program for this was relativley simple and I was able to utilize Raspberry Pi documentation and other resources to complete the funcionality of the camera module. 
+
+![cameraModule](
 include button event, camera, and email
 
 # First Milestone
@@ -44,7 +52,6 @@ My first milestone is a hardware showcase demonstrating the fuctionality of the 
 
 ![toggleDeomstratorCode](https://i.postimg.cc/cJb3sQ2j/Screen-Shot-2022-07-01-at-10-18-09-AM.png)
 
-In addition to the lock hardware, I assembled the rasbery pi camera continue...
 
 [![First Milestone](https://i3.ytimg.com/vi/aTZep-6-vyo/maxresdefault.jpg)](https://www.youtube.com/watch?v=aTZep-6-vyo){:target="_blank" rel="noopener"}
 
