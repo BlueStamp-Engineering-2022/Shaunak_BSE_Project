@@ -7,6 +7,11 @@ This will serve as a brief description of your project. Limit this to three sent
 | Shaunak | Evergreen Valley High School | Aerospace Engineering | Rising Junior
 
 ![Headstone Image](https://lh3.googleusercontent.com/pw/AM-JKLUyPm9lDkql57HACJpmlW91aN88FNzyqxOioTUiMTENQXb8N1k2SJOokscovDwvwWpHQtxzqjl9eZkr3oGKPCluUKkqFlOtY0NmaqmNtPLWZtcC9R8DLAHgj4aWDrxZ7iRT_iMwPqLYGsAs-knikgB_=w1830-h1828-no?authuser=0)
+
+# Program Workflow
+Program Workflow:
+![workFlow1](https://i.postimg.cc/XJW0kGZZ/Screen-Shot-2022-07-22-at-9-51-03-AM.png)
+![workFlow2](https://i.postimg.cc/3JNQ1HwZ/Screen-Shot-2022-07-22-at-9-51-32-AM.png)
   
 # Final Milestone 
 
@@ -23,10 +28,6 @@ Establishing the serial connection:
 ![serialConnection](https://i.postimg.cc/mgS3gKQ0/Screen-Shot-2022-07-22-at-9-49-06-AM.png)
 
 [![Final Milestone](https://i3.ytimg.com/vi/C91z8Jmsm0g/maxresdefault.jpg)](https://www.youtube.com/watch?v=F7M7imOVGug&feature=emb_logo "Final Milestone"){:target="_blank" rel="noopener"}
-
-Program Workflow:
-![workFlow1](https://i.postimg.cc/XJW0kGZZ/Screen-Shot-2022-07-22-at-9-51-03-AM.png)
-![workFlow2](https://i.postimg.cc/3JNQ1HwZ/Screen-Shot-2022-07-22-at-9-51-32-AM.png)
 
 # Second Milestone 
 
