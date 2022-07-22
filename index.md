@@ -10,13 +10,11 @@ This will serve as a brief description of your project. Limit this to three sent
   
 # Final Milestone 
 
-include images of code functions 
-
-Hi, my name is Shaunak, and I am a rising junior at Evergreen Valley highschool. My third and final milestone is a demonstration of my fully functional project. To test and assemble the parts of my program, I built each core function separately before combining them together. For example, I tested the uploadToS3 function by itself and then added it to the main program. I did the same for the sendEmail and buttonPressed functions. This unique approach allowed me to tweak and perfect each function by focusing only on its core functionality individually. 
+My third and final milestone is a demonstration of my fully functional project. To test and assemble the parts of my program, I built each core function separately before combining them together. For example, I tested the uploadToS3 function by itself and then added it to the main program. I did the same for the sendEmail and buttonPressed functions. This unique approach allowed me to tweak and perfect each function by focusing only on its core functionality individually. 
 
 One particularly interesting feauture of my program is the email and notification function. By impleneting the MIME or, Multipurpose Internet Mail Extensions library, in my program, I am able to send emails from my raspbery pi to any gmail user. In this case, I set the to and from address to a single email id that I can access. If the person at the door is identified as a verified guest, the lock will of course open and the raspbery pi will send an email to the owner notifying them that the door was unlocked, along with the name of the guest that entered the room. If the guest is not identified, the owner will receive an  email with an image attachment of the guest at the door.
 
-email screenshots(code and email)
+Email functions: 
 
 The final steps before the system was functional included programming the guestSearch function, which actvily calls Amazon Rekognition and looks in the database, and establishing a serial connection between the arduino and the Raspbery Pi so that the two would be able to communicate. Although I could run the servo to control the lock without the Arduino and directly from the GPIO pins on the Pi, I decided to use the Arduino as I was interested in learning about the serial connection. Essentially, the Arduino program opens a serial connection that I've set to a baud rate of 9600. After establishing a wired connection between the two computers, the Pi is able to access the device and send commands to the Arduino console. 
 
@@ -43,7 +41,7 @@ In between milestones, I worked on some functions that would be important to the
 
 Following the button event, I had to program the camera. The program for this was relativley simple and I was able to utilize Raspberry Pi documentation and other resources to complete the funcionality of the camera module. 
 
-![cameraModule](https://i.postimg.cc/YqJVdxcx/Screen-Shot-2022-07-22-at-9-27-48-AM.png)
+![cameraModule](https://i.postimg.cc/Kc91qxmq/Screen-Shot-2022-07-22-at-9-43-13-AM.png)
 
 
 # First Milestone
