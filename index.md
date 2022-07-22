@@ -37,11 +37,11 @@ Throughout this process, I struggled in a few places. When storing the image IDs
 
 In between milestones, I worked on some functions that would be important to the rest of my program. Firstly, I programmed the button event handler. Essentially, the button press varies the circuit voltage which, as read by the input pins on the Raspberry Pi, reads a value of either 0 or 1. By creating a conditional statement that looks for a rising edge in the voltage graph, the program can confirm a button press and call the next function. 
 
-![buttonEventHandler](https://i.postimg.cc/kgWXmmdd/Screen-Shot-2022-07-22-at-9-42-00-AM.png)
+![buttonEventHandler](https://i.postimg.cc/MKQz7SHj/Screen-Shot-2022-07-22-at-9-42-00-AM.png)
 
 Following the button event, I had to program the camera. The program for this was relativley simple and I was able to utilize Raspberry Pi documentation and other resources to complete the funcionality of the camera module. 
 
-![cameraModule](https://i.postimg.cc/hjtSTQQS/Screen-Shot-2022-07-22-at-9-43-13-AM.png)
+![cameraModule](https://i.postimg.cc/nr1gk0yg/Screen-Shot-2022-07-22-at-9-43-13-AM.png)
 
 
 # First Milestone
